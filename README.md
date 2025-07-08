@@ -19,7 +19,7 @@ It's nothing impressive but damn its useful.
 
 Its a binary, just download it, add to a know path and just use it. But for those who don't know:
 
-1º Download the binary in the release page  
+1º Download the binary in the release page (if ts available) 
 
 2º Follow the code commands below
 
@@ -39,6 +39,9 @@ chmod +x daily
 daily setup
 ```
 
+### Installation from source 
+
+Download the project files by cloning it or downloading the source code, build the code, and move it to a know directory
 
 ## Creator Notes 
 
