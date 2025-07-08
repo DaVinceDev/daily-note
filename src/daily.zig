@@ -16,6 +16,11 @@ pub const DailyNote = struct {
         };
     }
 
+    pub fn setup(self: *DailyNote) !void {
+        try std.fs.cwd().makeDir(self.workDir);
+        std.debug.print("Daily Note directory is set.", .{});
+    }
+
     pub fn list(self: *DailyNote) !void {
         const dir = try std.fs.cwd().openDir(self.workDir, .{ .iterate = true });
         var it = dir.iterate();
@@ -30,9 +35,10 @@ pub const DailyNote = struct {
         const dir = std.fs.cwd().openDir(self.workDir, .{}) catch {
             std.debug.print("Error: `daily` directory was not found. Fallback: Attemping to create it...\n", .{});
             try std.fs.cwd().makeDir(self.workDir);
-            return;
+            return error.DiretoryNotFound;
         };
 
+        std.debug.print("--START WRITTING BELOW--\n", .{});
         const content = try reader.readUntilDelimiterAlloc(allocator, ';', 1024);
 
         const new_filename = try std.fmt.allocPrint(allocator, "{s}.md", .{filename});
@@ -42,5 +48,19 @@ pub const DailyNote = struct {
         try file.writeAll(content);
 
         std.debug.print("WRITE!\n", .{});
+    }
+
+    pub fn get(self: *DailyNote, filename: []const u8) !void {
+        const dir = try std.fs.cwd().openDir(self.workDir, .{});
+
+        const file = dir.openFile(filename, .{ .mode = .read_only }) catch {
+            std.debug.print("Note was not found.\n", .{});
+            return error.NoteWasNotFound;
+        };
+
+        var buf: [1024]u8 = undefined;
+        const size = try file.readAll(&buf);
+        const content = buf[0..size];
+        std.debug.print("{s}\n", .{content});
     }
 };
