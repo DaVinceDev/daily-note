@@ -15,6 +15,31 @@ It's nothing impressive but damn its useful.
     daily list # Lists all your notes(again, duh) 
 ``` 
 
-### Creator Notes 
+## Installation
+
+Its a binary, just download it, add to a know path and just use it. But for those who don't know:
+
+1º Download the binary in the release page  
+
+2º Follow the code commands below
+
+```bash 
+mkdir -p .local/bin 
+
+export PATH="$HOME/.local/bin"
+
+mv ~/Downloads/daily ~/.local/bin 
+
+# Run this at .local/bin 
+
+chmod +x daily
+
+# Run this to setup the notes directory
+
+daily setup
+```
+
+
+## Creator Notes 
 
 Daily it's a WLR(Write-Read-List) a afternoon project, if you're going to critize it, fuck you.
