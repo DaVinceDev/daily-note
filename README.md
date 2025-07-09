@@ -26,7 +26,7 @@ Its a binary, just download it, add to a know path and just use it. But for thos
 ```bash 
 mkdir -p .local/bin 
 
-export PATH="$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 mv ~/Downloads/daily ~/.local/bin 
 
